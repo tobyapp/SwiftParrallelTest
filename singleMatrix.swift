@@ -22,8 +22,8 @@ class singleMatrix {
         mapArrayFromString("/Users/tobyapplegate/Desktop/arrayOne", arrayName: "matrixArrayOne")
         mapArrayFromString("/Users/tobyapplegate/Desktop/arrayTwo", arrayName: "matrixArrayTwo")
         
-        print(matrixArrayOne.count)
-        print(matrixArrayTwo.count)
+//        print(matrixArrayOne.count)
+//        print(matrixArrayTwo.count)
         multiplyMatricie()
     }
     
@@ -70,9 +70,9 @@ class singleMatrix {
                     total += matrixOne[index] * matrixTwo[index]
                     
                     //prints results
-                    //                    if index  == (number.count - 1) {
-                    //                        print(total)
-                    //                    }
+//                    if index  == (matrixOne.count - 1) {
+//                        print(total)
+//                    }
                 }
             }
         }

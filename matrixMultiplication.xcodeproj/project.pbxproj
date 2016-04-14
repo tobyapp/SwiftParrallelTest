@@ -15,9 +15,11 @@
 		526708081C84730D004E167B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526708071C84730D004E167B /* ViewController.swift */; };
 		5267080A1C84730D004E167B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 526708091C84730D004E167B /* Assets.xcassets */; };
 		5267080D1C84730D004E167B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5267080B1C84730D004E167B /* Main.storyboard */; };
+		BA0F4503BD24A58AFCE1A6EA /* Pods_matrixMultiplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6966508A466B8FB364B18C6A /* Pods_matrixMultiplication.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C1D3990C01EF3909327F746 /* Pods-matrixMultiplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-matrixMultiplication.debug.xcconfig"; path = "Pods/Target Support Files/Pods-matrixMultiplication/Pods-matrixMultiplication.debug.xcconfig"; sourceTree = "<group>"; };
 		5216DE331C876EEE00F03019 /* parallelMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = parallelMatrix.swift; path = ../parallelMatrix.swift; sourceTree = "<group>"; };
 		5216DE351C876F1A00F03019 /* singleMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = singleMatrix.swift; path = ../singleMatrix.swift; sourceTree = "<group>"; };
 		5216DE391C87707D00F03019 /* BackUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackUpViewController.swift; path = ../BackUpViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +30,8 @@
 		526708091C84730D004E167B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5267080C1C84730D004E167B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5267080E1C84730D004E167B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6966508A466B8FB364B18C6A /* Pods_matrixMultiplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_matrixMultiplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CA41D8E9577F9A59AFD7DDF /* Pods-matrixMultiplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-matrixMultiplication.release.xcconfig"; path = "Pods/Target Support Files/Pods-matrixMultiplication/Pods-matrixMultiplication.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +39,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA0F4503BD24A58AFCE1A6EA /* Pods_matrixMultiplication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BF59B5F650E9D5E113DBA78 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3C1D3990C01EF3909327F746 /* Pods-matrixMultiplication.debug.xcconfig */,
+				8CA41D8E9577F9A59AFD7DDF /* Pods-matrixMultiplication.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		526707F91C84730D004E167B = {
 			isa = PBXGroup;
 			children = (
 				526708041C84730D004E167B /* matrixMultiplication */,
 				526708031C84730D004E167B /* Products */,
+				2BF59B5F650E9D5E113DBA78 /* Pods */,
+				7EE2FAE83F67D0D2D0E8EF54 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +89,14 @@
 			path = matrixMultiplication;
 			sourceTree = "<group>";
 		};
+		7EE2FAE83F67D0D2D0E8EF54 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6966508A466B8FB364B18C6A /* Pods_matrixMultiplication.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +104,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 526708111C84730D004E167B /* Build configuration list for PBXNativeTarget "matrixMultiplication" */;
 			buildPhases = (
+				DFB26B21A5B780B5F9F9E55E /* Check Pods Manifest.lock */,
 				526707FE1C84730D004E167B /* Sources */,
 				526707FF1C84730D004E167B /* Frameworks */,
 				526708001C84730D004E167B /* Resources */,
+				C7ADEE743E16A8F20D796D91 /* Embed Pods Frameworks */,
+				E9CE9F265B818DA84E27915F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -137,6 +164,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C7ADEE743E16A8F20D796D91 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-matrixMultiplication/Pods-matrixMultiplication-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DFB26B21A5B780B5F9F9E55E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E9CE9F265B818DA84E27915F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-matrixMultiplication/Pods-matrixMultiplication-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		526707FE1C84730D004E167B /* Sources */ = {
@@ -248,6 +323,7 @@
 		};
 		526708121C84730D004E167B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C1D3990C01EF3909327F746 /* Pods-matrixMultiplication.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -260,6 +336,7 @@
 		};
 		526708131C84730D004E167B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8CA41D8E9577F9A59AFD7DDF /* Pods-matrixMultiplication.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;

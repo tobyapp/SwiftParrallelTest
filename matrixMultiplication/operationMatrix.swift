@@ -8,9 +8,14 @@
 
 import Foundation
 import Cocoa
+import SwiftyBeaver
 
 class operationMatrix {
-
+    
+        let log = SwiftyBeaver.self
+        let console = ConsoleDestination()
+    
+    
         var testArrayOne, testArrayTwo: [[Int]]?
         var matrixArrayOne: [[Int]] = []
         var matrixArrayTwo: [[Int]] = []
@@ -18,7 +23,8 @@ class operationMatrix {
         let operationQueue = NSOperationQueue()
         
         func calculateMatrix() {
-
+            log.addDestination(console)
+            console.detailOutput = false
             mapArrayFromString("/Users/tobyapplegate/Desktop/arrayOne", arrayName: "matrixArrayOne")
             mapArrayFromString("/Users/tobyapplegate/Desktop/arrayTwo", arrayName: "matrixArrayTwo")
             
@@ -51,10 +57,10 @@ class operationMatrix {
     
     func printTime(startTime: NSDate) {
         if operationQueue.operationCount == 0 {
-            print("operationsCount = \(operationQueue.operationCount)")
+            log.info("operationsCount = \(operationQueue.operationCount)")
             let endTime = NSDate()
             let timeInterval: Double = endTime.timeIntervalSinceDate(startTime) // <<<<< Difference in seconds (double)
-            print("Time to complete operation version: \(timeInterval/0.001) milli-seconds")
+            log.info("Time to complete operation version: \(timeInterval/0.001) milli-seconds")
         }
     }
     

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D98D339B9C6D4E2F7391568AC8F021950336D53B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D98D339B9C6D4E2F7391568AC8F021950336D53B" : 0,
+    "DFFD488C1D7EC13C240FB6405B1C687602438AAC" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F6DBC424-EF64-4A1A-922E-5CB47E09225C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D98D339B9C6D4E2F7391568AC8F021950336D53B" : "matrixMultiplication\/",
+    "DFFD488C1D7EC13C240FB6405B1C687602438AAC" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "matrixMultiplication",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "matrixMultiplication.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tobyapp\/SwiftParrallelTest.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D98D339B9C6D4E2F7391568AC8F021950336D53B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tobyapp\/test.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DFFD488C1D7EC13C240FB6405B1C687602438AAC"
+    }
+  ]
+}
