@@ -57,16 +57,30 @@ class TestOperationMatrix {
     // Add work to NSOperation que
     func addToQue(arrayOne: [Array<Int>], arrayTwo: [Array<Int>], startTime: NSDate, operationNumber: Int) {
         
-        let operation = NSBlockOperation() {
-            self.multiplyMatricie(arrayOne, maTwo: arrayTwo)
-        }
+        let operation = op(arrayOne: arrayOne, arrayTwo: arrayTwo)
+        
         operation.completionBlock = {
-            print("done operation \(operationNumber)")
+            //print("done operation \(operationNumber)")
             self.printTime(startTime)
             //print(self.totalArray)
         }
+        
         operationQueue.addOperation(operation)
-        print("operationsCount = \(operationQueue.operationCount)")
+        
+        
+        //operationQueue.addOperation(op(arrayOne: arrayOne, arrayTwo: arrayTwo))
+        
+        
+//        let operation = NSBlockOperation() {
+//            self.multiplyMatricie(arrayOne, maTwo: arrayTwo)
+//        }
+//        operation.completionBlock = {
+//            print("done operation \(operationNumber)")
+//            self.printTime(startTime)
+//            //print(self.totalArray)
+//        }
+//        operationQueue.addOperation(operation)
+//        print("operationsCount = \(operationQueue.operationCount)")
         
     }
     
@@ -110,9 +124,41 @@ class TestOperationMatrix {
     }
 }
 
-class op: NSOperation {
+class op: NSBlockOperation {
+    
+    var totalArray = [Int]()
+    var maOne: [Array<Int>]?
+    var maTwo: [Array<Int>]?
+    
+    init(arrayOne: [Array<Int>], arrayTwo: [Array<Int>]){
+        maOne = arrayOne
+        maTwo = arrayTwo
+    }
     
     override func main() {
-    print("Thread main DONE")
+        multiplyMatricie(maOne!, maTwo: maTwo!)
     }
+    
+    
+    // Multiple two differernt matracies
+    func multiplyMatricie(maOne: [Array<Int>], maTwo: [Array<Int>]) {
+        var total = 0
+        for matrixOne in maOne {
+            for matrixTwo in maTwo {
+                for index in 0 ..< matrixOne.count {
+                    if index == 0 {
+                        total = 0
+                    }
+                    total += matrixOne[index] * matrixTwo[index]
+                    //prints results
+                    if index  == (matrixOne.count - 1) || index == (matrixTwo.count - 1) {
+                        //print("total : \(total)")
+                        totalArray.append(total)
+                    }
+                }
+            }
+        }
+    }
+
+    
 }

@@ -28,7 +28,7 @@ class operationMatrix {
             let segments = matrixArrayOne.count / processes // how many processes we want to use
             let dividerArray = Array(0.stride(to: matrixArrayOne.count + 1, by: segments))
 
-            for var i = 0; i < dividerArray.count; i++ {
+            for var i = 0; i < dividerArray.count; i += 1 {
                 if i != dividerArray.count-1 {
                     let arrayOne = matrixArrayOne[dividerArray[i] ... (dividerArray[i+1]-1)]
                     let arrayTwo = matrixArrayTwo[dividerArray[i] ... (dividerArray[i+1]-1)]
@@ -86,7 +86,7 @@ class operationMatrix {
             var total = 0
             for matrixOne in maOne {
                 for matrixTwo in maTwo {
-                    for var index = 0; index < matrixOne.count; ++index {
+                    for var index = 0; index < matrixOne.count; index += 1 {
                         if index == 0 {
                             total = 0
                         }
@@ -97,7 +97,7 @@ class operationMatrix {
         }
         
         func test() {
-            for var index = 0; index < testArrayOne!.count; ++index {
+            for var index = 0; index < testArrayOne!.count; index += 1 {
                 print(testArrayOne![index][index])
             }
         }
