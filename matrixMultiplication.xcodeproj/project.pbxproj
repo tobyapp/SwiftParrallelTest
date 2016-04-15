@@ -15,6 +15,7 @@
 		526708081C84730D004E167B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526708071C84730D004E167B /* ViewController.swift */; };
 		5267080A1C84730D004E167B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 526708091C84730D004E167B /* Assets.xcassets */; };
 		5267080D1C84730D004E167B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5267080B1C84730D004E167B /* Main.storyboard */; };
+		52E821921CBFD4F900064EB0 /* TestOperationMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E821911CBFD4F900064EB0 /* TestOperationMatrix.swift */; };
 		BA0F4503BD24A58AFCE1A6EA /* Pods_matrixMultiplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6966508A466B8FB364B18C6A /* Pods_matrixMultiplication.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		526708091C84730D004E167B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5267080C1C84730D004E167B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5267080E1C84730D004E167B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52E821911CBFD4F900064EB0 /* TestOperationMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestOperationMatrix.swift; sourceTree = "<group>"; };
 		6966508A466B8FB364B18C6A /* Pods_matrixMultiplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_matrixMultiplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CA41D8E9577F9A59AFD7DDF /* Pods-matrixMultiplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-matrixMultiplication.release.xcconfig"; path = "Pods/Target Support Files/Pods-matrixMultiplication/Pods-matrixMultiplication.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,11 +78,12 @@
 		526708041C84730D004E167B /* matrixMultiplication */ = {
 			isa = PBXGroup;
 			children = (
+				52E821911CBFD4F900064EB0 /* TestOperationMatrix.swift */,
 				5216DE351C876F1A00F03019 /* singleMatrix.swift */,
 				5216DE3B1C8790AC00F03019 /* operationMatrix.swift */,
 				5216DE331C876EEE00F03019 /* parallelMatrix.swift */,
-				526708051C84730D004E167B /* AppDelegate.swift */,
 				526708071C84730D004E167B /* ViewController.swift */,
+				526708051C84730D004E167B /* AppDelegate.swift */,
 				5216DE391C87707D00F03019 /* BackUpViewController.swift */,
 				526708091C84730D004E167B /* Assets.xcassets */,
 				5267080B1C84730D004E167B /* Main.storyboard */,
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52E821921CBFD4F900064EB0 /* TestOperationMatrix.swift in Sources */,
 				5216DE3C1C8790AC00F03019 /* operationMatrix.swift in Sources */,
 				5216DE361C876F1A00F03019 /* singleMatrix.swift in Sources */,
 				526708081C84730D004E167B /* ViewController.swift in Sources */,

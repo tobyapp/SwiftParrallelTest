@@ -13,12 +13,23 @@ class ViewController: NSViewController {
     let nonParrallel = singleMatrix()
     let parrallel = parallelMatrix()
     let operation = operationMatrix()
+    let test = TestOperationMatrix()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nonParrallel.calculateMatrix()
-        parrallel.calculateMatrix()
-        operation.calculateMatrix()
+        
+        // Non parrallel verison
+        //nonParrallel.calculateMatrix()
+        
+        // Using GCD
+        //parrallel.calculateMatrix()
+        
+        // Using NSOperation que
+        //operation.calculateMatrix()
+        
+        //Tetsing the logic of multiplying matricies
+        test.calculateMatrix()
+        
     }
     
     override var representedObject: AnyObject? {

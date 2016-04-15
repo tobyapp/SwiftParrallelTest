@@ -12,27 +12,23 @@ import Cocoa
 class parallelMatrix {
     
     //arrays
-    var testArrayOne, testArrayTwo: [[Int]]?
     var matrixArrayOne: [[Int]] = []
     var matrixArrayTwo: [[Int]] = []
     var answerArray: [Int] = []
+    var testArrayOne = [ [1,2,3] , [4,5,6] ]
+    var testArrayTwo = [ [7,9,11] , [8,10,12] ]
     
     //GCD parameters
     var dispatchGroup:dispatch_group_t = dispatch_group_create() //A group of block objects submitted to a queue for asynchronous invocation.
     var queue:dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0) //A dispatch queue is a lightweight object to which your application submits blocks for subsequent execution.
     let concurrentValueQue = dispatch_queue_create("com.tapplegate.matrixMultiplication.valueQue", DISPATCH_QUEUE_CONCURRENT) //que is concurrent (runs multiple things at same time)
-    var semaphore:dispatch_semaphore_t = dispatch_semaphore_create(8)
+    var semaphore:dispatch_semaphore_t = dispatch_semaphore_create(32)
     
     func calculateMatrix() {
-        
-        self.testArrayOne = [ [1,2,3] , [4,5,6] ]
-        self.testArrayTwo = [ [7,9,11] , [8,10,12] ]
         
         mapArrayFromString("/Users/tobyapplegate/Desktop/arrayOne", arrayName: "matrixArrayOne")
         mapArrayFromString("/Users/tobyapplegate/Desktop/arrayTwo", arrayName: "matrixArrayTwo")
         
-        print(matrixArrayOne.count)
-        print(matrixArrayTwo.count)
         multiplyMatricie()
     }
     
@@ -61,8 +57,6 @@ class parallelMatrix {
         }
     }
     
-    //multiply the two matricies together
-    
     func saveToArray(answer: Int) {
        
         dispatch_barrier_async(concurrentValueQue) { //write opperation to custom que, only item in que
@@ -73,41 +67,17 @@ class parallelMatrix {
         }
     }
     
+    //multiply the two matricies together
     func multiplyMatricie() {
         let startTime = NSDate()
         var total = 0
-//
-//        var dispatchGroup:dispatch_group_t = dispatch_group_create() //A group of block objects submitted to a queue for asynchronous invocation.
-//        var queue:dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0) //A dispatch queue is a lightweight object to which your application submits blocks for subsequent execution.
-//        let concurrentValueQue = dispatch_queue_create("com.tapplegate.matrixMultiplication.valueQue", DISPATCH_QUEUE_CONCURRENT) //que is concurrent (runs multiple things at same time)
-//        var semaphore:dispatch_semaphore_t = dispatch_semaphore_create(8)
-
-        
-        
-//        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-//        dispatch_group_enter(dispatchGroup)
-//        //dispatch_group_async(group, queue) { () -> Void in
-//        
-//        
-//        dispatch_async(concurrentValueQue, { () -> Void in
-//            print("hello world")
-//        })
-//        
-//        dispatch_group_leave(dispatchGroup)
-//        dispatch_semaphore_signal(semaphore)
-//        
-//        
-//        dispatch_group_wait(dispatchGroup, DISPATCH_TIME_FOREVER)
-        
-        
-        
         
         dispatch_async(GlobalUserInitiatedQueue) { //placein background que so main thread isnt blocked
             
             dispatch_group_enter(self.dispatchGroup) // notifys a group that task has started
-                for matrixOne in self.matrixArrayOne {
-                    for matrixTwo in self.matrixArrayTwo {
-                        for var index = 0; index < matrixOne.count; ++index {
+                for matrixOne in self.matrixArrayOne { //self.matrixArrayOne
+                    for matrixTwo in self.matrixArrayTwo { //self.matrixArrayOne
+                        for index in 0 ..< matrixOne.count {
                             
                             //resets total to 0 when multiplying new matrix
                             if index == 0 {
@@ -119,6 +89,7 @@ class parallelMatrix {
                             // save and print results
                             if index  == (matrixOne.count - 1) {
                                 self.saveToArray(total)
+                                //print("total : \(total)")
                             }
                         }
                     }
@@ -136,16 +107,10 @@ class parallelMatrix {
             }
             let endTime1 = NSDate()
             let timeInterval1: Double = endTime1.timeIntervalSinceDate(startTime)
-            print("Time to complete parallel version after clousre: \(timeInterval1/0.001) milli-seconds")
+            print("Time to complete parallel version after closure: \(timeInterval1/0.001) milli-seconds")
         }
         
         
-    }
-    
-    func test() {
-        for var index = 0; index < testArrayOne!.count; ++index {
-            print(testArrayOne![index][index])
-        }
     }
     
         var GlobalMainQueue: dispatch_queue_t {
