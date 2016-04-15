@@ -11,19 +11,21 @@ import Cocoa
 
 class TestOperationMatrix {
     
-//    var testArrayOne = [ [1,2,3], [4,5,6], [7,8,9], [10,11,12], [13,14,15], [16,17,18], [19,20,21], [22,23,24], [25,26,27], [28,29,30], [31,32,33], [34,35,36], [37,38,39] , [40,41,42], [43,44,45] , [46,47,48]]
-//    var testArrayTwo = [ [7,9,11] , [8,10,12], [7,9,11] , [8,10,12], [7,9,11] , [8,10,12], [7,9,11] , [8,10,12], [7,9,11] , [8,10,12], [7,9,11] , [8,10,12], [7,9,11] , [8,10,12], [7,9,11] , [8,10,12]]
+    var testArrayOne = [ [1,2,3], [4,5,6], [7,8,9], [10,11,12], [13,14,15], [16,17,18], [19,20,21], [22,23,24], [25,26,27], [28,29,30], [31,32,33], [34,35,36], [37,38,39] , [40,41,42], [43,44,45] , [46,47,48]]
+    var testArrayTwo = [ [7,9,11] , [8,10,12], [7,9,11] , [8,10,12], [7,9,11] , [8,10,12], [7,9,11] , [8,10,12], [7,9,11] , [8,10,12], [7,9,11] , [8,10,12], [7,9,11] , [8,10,12], [7,9,11] , [8,10,12]]
     
-    var testArrayOne = [ [1,2,3], [4,5,6]]
-    var testArrayTwo = [ [7,9,11] , [8,10,12]]
+//    var testArrayOne = [ [1,2,3], [4,5,6]]
+//   var testArrayTwo = [ [7,9,11] , [8,10,12]]
     var totalArray = [Int]()
-    let operationQueue = NSOperationQueue()
+    let operationQueue = NSOperationQueue.mainQueue()
     
     func calculateMatrix() {
 
         let startTime = NSDate()
-        let processes = 2
+        let processes = 4
         
+        operationQueue.maxConcurrentOperationCount = processes //defines max number of operations that can excecute at the same time
+
         let splitArrayOne = splitMatrix(processes: processes, matrix: testArrayOne)
         let splitArrayTwo = splitMatrix(processes: processes, matrix: testArrayTwo)
         
@@ -37,7 +39,7 @@ class TestOperationMatrix {
         }
     }
     
-    func splitMatrix(processes numberOfArrays: Int, matrix array: [Array<Int>]) -> [[Array<Int>]]{ //, matrixOne : [Array<Int>], matrixTwo: [Array<Int>]
+    func splitMatrix(processes numberOfArrays: Int, matrix array: [Array<Int>]) -> [[Array<Int>]]{
         let numOfelementsInArray = array.count / numberOfArrays
         var matrixElement = 0
         var tempArray = [[Array<Int>]]()
@@ -54,6 +56,7 @@ class TestOperationMatrix {
     
     // Add work to NSOperation que
     func addToQue(arrayOne: [Array<Int>], arrayTwo: [Array<Int>], startTime: NSDate, operationNumber: Int) {
+        
         let operation = NSBlockOperation() {
             self.multiplyMatricie(arrayOne, maTwo: arrayTwo)
         }
@@ -64,7 +67,7 @@ class TestOperationMatrix {
         }
         operationQueue.addOperation(operation)
         print("operationsCount = \(operationQueue.operationCount)")
-
+        
     }
     
     // Print finish time
@@ -88,7 +91,7 @@ class TestOperationMatrix {
                     total += matrixOne[index] * matrixTwo[index]
                     //prints results
                     if index  == (matrixOne.count - 1) || index == (matrixTwo.count - 1) {
-                        //print("total : \(total)")
+                        print("total : \(total)")
                         totalArray.append(total)
                     }
                 }
@@ -105,6 +108,11 @@ class TestOperationMatrix {
         print("total : \(total)")
         totalArray.append(total)
     }
+}
 
-
+class op: NSOperation {
+    
+    override func main() {
+    print("Thread main DONE")
+    }
 }

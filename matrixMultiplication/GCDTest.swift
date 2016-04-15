@@ -9,7 +9,7 @@
 
 import Cocoa
 
-class parallelMatrix {
+class GCDTest {
     
     //arrays
     var matrixArrayOne: [[Int]] = []
@@ -58,7 +58,7 @@ class parallelMatrix {
     }
     
     func saveToArray(answer: Int) {
-       
+        
         dispatch_barrier_async(concurrentValueQue) { //write opperation to custom que, only item in que
             self.answerArray.append(answer)
             dispatch_async(self.GlobalMainQueue) { // print notification this is done on main thread
@@ -75,35 +75,35 @@ class parallelMatrix {
         dispatch_async(GlobalUserInitiatedQueue) { //place in background que so main thread isnt blocked
             
             dispatch_group_enter(self.dispatchGroup) // notifys a group that task has started
-                for matrixOne in self.matrixArrayOne { //self.matrixArrayOne
-                    for matrixTwo in self.matrixArrayTwo { //self.matrixArrayOne
-                        for index in 0 ..< matrixOne.count {
-                            
-                            //resets total to 0 when multiplying new matrix
-                            if index == 0 {
-                                total = 0
-                            }
-                            
-                            total += matrixOne[index] * matrixTwo[index]
-                            
-                            // save and print results
-                            if index  == (matrixOne.count - 1) {
-                                self.saveToArray(total)
-                                //print("total : \(total)")
-                            }
+            for matrixOne in self.matrixArrayOne { //self.matrixArrayOne
+                for matrixTwo in self.matrixArrayTwo { //self.matrixArrayOne
+                    for index in 0 ..< matrixOne.count {
+                        
+                        //resets total to 0 when multiplying new matrix
+                        if index == 0 {
+                            total = 0
+                        }
+                        
+                        total += matrixOne[index] * matrixTwo[index]
+                        
+                        // save and print results
+                        if index  == (matrixOne.count - 1) {
+                            self.saveToArray(total)
+                            //print("total : \(total)")
                         }
                     }
                 }
+            }
             dispatch_group_leave(self.dispatchGroup) //notfiy group that work is done
             
             dispatch_group_wait(self.dispatchGroup, DISPATCH_TIME_FOREVER) // waits until all tasks are complete or until time expires (wont as time is infinite).
-          
-        dispatch_async(self.GlobalMainQueue) { //all tasks complete, call back main thread to complete clousre
             
-            print("all tasks complete")
-            let endTime = NSDate()
-            let timeInterval: Double = endTime.timeIntervalSinceDate(startTime)
-            print("Time to complete parallel version: \(timeInterval/0.001) milli-seconds")
+            dispatch_async(self.GlobalMainQueue) { //all tasks complete, call back main thread to complete clousre
+                
+                print("all tasks complete")
+                let endTime = NSDate()
+                let timeInterval: Double = endTime.timeIntervalSinceDate(startTime)
+                print("Time to complete parallel version: \(timeInterval/0.001) milli-seconds")
             }
             let endTime1 = NSDate()
             let timeInterval1: Double = endTime1.timeIntervalSinceDate(startTime)
@@ -113,24 +113,24 @@ class parallelMatrix {
         
     }
     
-        var GlobalMainQueue: dispatch_queue_t {
-            return dispatch_get_main_queue()
-        }
-        
-        var GlobalUserInteractiveQueue: dispatch_queue_t {
-            return dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)
-        }
-        
-        var GlobalUserInitiatedQueue: dispatch_queue_t {
-            return dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)
-        }
-        
-        var GlobalUtilityQueue: dispatch_queue_t {
-            return dispatch_get_global_queue(Int(QOS_CLASS_UTILITY.rawValue), 0)
-        }
-        
-        var GlobalBackgroundQueue: dispatch_queue_t {
-            return dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)
-        }
+    var GlobalMainQueue: dispatch_queue_t {
+        return dispatch_get_main_queue()
+    }
+    
+    var GlobalUserInteractiveQueue: dispatch_queue_t {
+        return dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)
+    }
+    
+    var GlobalUserInitiatedQueue: dispatch_queue_t {
+        return dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)
+    }
+    
+    var GlobalUtilityQueue: dispatch_queue_t {
+        return dispatch_get_global_queue(Int(QOS_CLASS_UTILITY.rawValue), 0)
+    }
+    
+    var GlobalBackgroundQueue: dispatch_queue_t {
+        return dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)
+    }
     
 }
