@@ -25,6 +25,7 @@ class TestOperationMatrix {
         let processes = 4
         
         operationQueue.maxConcurrentOperationCount = processes //defines max number of operations that can excecute at the same time
+        // Default is one
 
         let splitArrayOne = splitMatrix(processes: processes, matrix: testArrayOne)
         let splitArrayTwo = splitMatrix(processes: processes, matrix: testArrayTwo)
@@ -58,70 +59,26 @@ class TestOperationMatrix {
     func addToQue(arrayOne: [Array<Int>], arrayTwo: [Array<Int>], startTime: NSDate, operationNumber: Int) {
         
         let operation = op(arrayOne: arrayOne, arrayTwo: arrayTwo)
-        
         operation.completionBlock = {
-            //print("done operation \(operationNumber)")
             self.printTime(startTime)
+            
+            //print("done operation \(operationNumber)")
             //print(self.totalArray)
         }
-        
         operationQueue.addOperation(operation)
-        
-        
-        //operationQueue.addOperation(op(arrayOne: arrayOne, arrayTwo: arrayTwo))
-        
-        
-//        let operation = NSBlockOperation() {
-//            self.multiplyMatricie(arrayOne, maTwo: arrayTwo)
-//        }
-//        operation.completionBlock = {
-//            print("done operation \(operationNumber)")
-//            self.printTime(startTime)
-//            //print(self.totalArray)
-//        }
-//        operationQueue.addOperation(operation)
-//        print("operationsCount = \(operationQueue.operationCount)")
-        
     }
     
     // Print finish time
     func printTime(startTime: NSDate) {
+        //prints time when no work left in the que
         if operationQueue.operationCount == 0 {
             let endTime = NSDate()
-            let timeInterval: Double = endTime.timeIntervalSinceDate(startTime) // <<<<< Difference in seconds (double)
-            print("Time to complete operation version: \(timeInterval/0.001) milli-seconds")
+            let timeInterval: Double = endTime.timeIntervalSinceDate(startTime) // Difference in seconds (double)
+            print("Time to complete : \(timeInterval/0.001) milli-seconds")
         }
     }
     
-    // Multiple two differernt matracies
-    func multiplyMatricie(maOne: [Array<Int>], maTwo: [Array<Int>]) {
-        var total = 0
-        for matrixOne in maOne {
-            for matrixTwo in maTwo {
-                for index in 0 ..< matrixOne.count {
-                    if index == 0 {
-                        total = 0
-                    }
-                    total += matrixOne[index] * matrixTwo[index]
-                    //prints results
-                    if index  == (matrixOne.count - 1) || index == (matrixTwo.count - 1) {
-                        print("total : \(total)")
-                        totalArray.append(total)
-                    }
-                }
-            }
-        }
-    }
     
-    // multiply two single matricies
-    func multiplySingleMatricie(maOne: [Int], maTwo: [Int]) {
-        var total = 0
-        for index in 0 ..< maOne.count {
-            total += maOne[index] * maTwo[index]
-        }
-        print("total : \(total)")
-        totalArray.append(total)
-    }
 }
 
 class op: NSBlockOperation {
@@ -137,8 +94,8 @@ class op: NSBlockOperation {
     
     override func main() {
         multiplyMatricie(maOne!, maTwo: maTwo!)
+        print(totalArray)
     }
-    
     
     // Multiple two differernt matracies
     func multiplyMatricie(maOne: [Array<Int>], maTwo: [Array<Int>]) {
@@ -150,10 +107,10 @@ class op: NSBlockOperation {
                         total = 0
                     }
                     total += matrixOne[index] * matrixTwo[index]
-                    //prints results
                     if index  == (matrixOne.count - 1) || index == (matrixTwo.count - 1) {
                         //print("total : \(total)")
                         totalArray.append(total)
+                        print(totalArray)
                     }
                 }
             }
