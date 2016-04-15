@@ -31,9 +31,6 @@ class TestOperationMatrix {
         var operationNumberCount = 1
         for count in 0..<splitArrayOne.count {
             for count1 in 0..<splitArrayTwo.count {
-//                print(count)
-//                print(splitArrayOne[count])
-//                print(splitArrayTwo[count])
                 addToQue(splitArrayOne[count], arrayTwo: splitArrayTwo[count1], startTime: startTime, operationNumber: operationNumberCount)
                 operationNumberCount += 1
             }
@@ -44,44 +41,33 @@ class TestOperationMatrix {
         let numOfelementsInArray = array.count / numberOfArrays
         var matrixElement = 0
         var tempArray = [[Array<Int>]]()
-        //print("number of elements in each array is : \(numOfelementsInArray)")
-        for i in 0 ..< numberOfArrays {
-            //print("array number : \(i+1)")
+        for _ in 0 ..< numberOfArrays {
             var tempMatrix = [Array<Int>]()
             for _ in 0 ..< numOfelementsInArray {
                 tempMatrix.append(array[matrixElement])
                 matrixElement = matrixElement + 1
             }
-            //print(tempMatrix)
             tempArray.append(tempMatrix)
         }
         return tempArray
     }
     
+    // Add work to NSOperation que
     func addToQue(arrayOne: [Array<Int>], arrayTwo: [Array<Int>], startTime: NSDate, operationNumber: Int) {
         let operation = NSBlockOperation() {
             self.multiplyMatricie(arrayOne, maTwo: arrayTwo)
         }
         operation.completionBlock = {
-            //print("done operation \(operNumber)")
+            print("done operation \(operationNumber)")
             self.printTime(startTime)
-            print(self.totalArray)
+            //print(self.totalArray)
         }
         operationQueue.addOperation(operation)
         print("operationsCount = \(operationQueue.operationCount)")
 
     }
     
-    // multiply two single matricies
-    func multiplySingleMatricie(maOne: [Int], maTwo: [Int]) {
-        var total = 0
-        for index in 0 ..< maOne.count {
-            total += maOne[index] * maTwo[index]
-        }
-        print("total : \(total)")
-        totalArray.append(total)
-    }
-    
+    // Print finish time
     func printTime(startTime: NSDate) {
         if operationQueue.operationCount == 0 {
             let endTime = NSDate()
@@ -90,6 +76,7 @@ class TestOperationMatrix {
         }
     }
     
+    // Multiple two differernt matracies
     func multiplyMatricie(maOne: [Array<Int>], maTwo: [Array<Int>]) {
         var total = 0
         for matrixOne in maOne {
@@ -101,12 +88,23 @@ class TestOperationMatrix {
                     total += matrixOne[index] * matrixTwo[index]
                     //prints results
                     if index  == (matrixOne.count - 1) || index == (matrixTwo.count - 1) {
-                        print("total : \(total)")
+                        //print("total : \(total)")
                         totalArray.append(total)
                     }
                 }
             }
         }
     }
+    
+    // multiply two single matricies
+    func multiplySingleMatricie(maOne: [Int], maTwo: [Int]) {
+        var total = 0
+        for index in 0 ..< maOne.count {
+            total += maOne[index] * maTwo[index]
+        }
+        print("total : \(total)")
+        totalArray.append(total)
+    }
+
 
 }
